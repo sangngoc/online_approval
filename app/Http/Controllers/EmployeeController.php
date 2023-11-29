@@ -89,6 +89,7 @@ class EmployeeController extends Controller
                 'dep_id' => $request->u_dep_id,
                 'sec_id' => $request->u_sec_id,
                 'position' => $request->u_pos,
+                'name' => $request->u_name,
                 'updated_at'=> Carbon::now('Asia/Ho_Chi_Minh'),
             ]
         );
@@ -153,6 +154,7 @@ class EmployeeController extends Controller
                 }else{
                     DB::table('master')
                     ->where('emp_id',$last->id)
+                    ->where('sys_id',$item->sys_id)
                     ->delete();
                 }
             }

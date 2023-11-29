@@ -29,6 +29,18 @@
 	}
 }
 
+/* .tfoot input {
+    /* display: table-header-group; */
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+} */
+
+.w-head-search {
+	width: 100%;
+	padding: 5px;
+}
+
 .table-responsive .dataTables_wrapper .dataTables_info {
 	clear: none;
     float: left;

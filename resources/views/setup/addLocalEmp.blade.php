@@ -265,7 +265,7 @@
 
 <script>
     $(document).ready(function() {
-    $('#user_table').DataTable({
+        var table = $('#user_table').DataTable({
         //disable sorting on last column
         "columnDefs": [
             { "orderable": false, "targets": 5 }
@@ -277,16 +277,31 @@
             'next': '<span class="fa fa-chevron-right"></span>'
             },
             //customize number of elements to be displayed
-            "lengthMenu": '<label style="margin-left: 1rem">Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
+            "lengthMenu": 'Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
+                '<option value="5">5</option>'+
                 '<option value="10">10</option>'+
-                '<option value="20">20</option>'+
-                '<option value="30">30</option>'+
-                '<option value="40">40</option>'+
+                '<option value="25">25</option>'+
                 '<option value="50">50</option>'+
                 '<option value="-1">All</option>'+
-                '</select> results </label>',
+                '</select> results'
         },
-        dom: 'ilfrtp',
-    })  
+        columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }
+            ],
+    })
+    
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+        table
+            .cells(null, 0, { search: 'applied', order: 'applied' })
+            .every(function (cell) {
+                this.data(i++);
+            });
+    })
+    .draw();
 } );
 </script>

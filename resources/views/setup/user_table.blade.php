@@ -3,6 +3,7 @@
         <table class="table table-hover" id="user_table">
         <thead class="align-middle">
             <tr>
+                <th></th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Unit Name</th>
@@ -18,6 +19,7 @@
     <tr>
         <form action="" method="get" class="row">
             @csrf
+            <td></td>
             <input type="hidden" name="user_id" value="{{$item->id}}">
             <td><x-input-label :value="__($item->id)"/></td>
             <td><x-input-label :value="__($item->name)" /></td>

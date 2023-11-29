@@ -1,6 +1,7 @@
-<table id="history_table" class="table table-hover table-striped">
+<table id="history_table" class="table table-hover table-striped display">
     <thead class="align-middle">
         <tr>
+            <th></th>
             <th>Request ID</th>
             <th>Receiving Unit</th>
             <th>Request Type</th>
@@ -45,6 +46,7 @@
     <form action="{{ route('history_detail') }}" method="get" enctype="multipart/form-data">
         @csrf   
         
+        <td></td>
         <td><x-input-label :value="__($reqst->req_id)" /></td>
             <input type="hidden" name="req_id" value="{{$reqst->req_id}}">
         <td><x-input-label :value="__($reqst->sys_name)" /></td>

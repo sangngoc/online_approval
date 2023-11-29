@@ -18,6 +18,7 @@
         <!-- Data Table CSS -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
         <link rel='stylesheet' href='https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css'>
+        <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css'>
 
 
         <!-- Font Awesome CSS -->
@@ -34,6 +35,8 @@
 
         <script src='https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js'></script>
+
+        <script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

@@ -14,6 +14,7 @@
             <table class="table table-hover" id="redo_table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Request ID</th>
                     <th>Receiving Unit</th>
                     <th>Request Type</th>
@@ -38,6 +39,7 @@
     <form action="{{ route('redo_detail') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
+        <td></td>
         <td><x-input-label :value="__($r->req_id)" /></td>       
         <td><x-input-label :value="__($req->sys_name)" /></td>     
         <td><x-input-label :value="__($req->type_name)" /></td>
@@ -62,7 +64,7 @@
 
 <script>
     $(document).ready(function() {
-    $('#redo_table').DataTable({
+    var table = $('#redo_table').DataTable({
         //disable sorting on last column
         "columnDefs": [
             { "orderable": false, "targets": 5 }
@@ -83,6 +85,23 @@
                 '<option value="-1">All</option>'+
                 '</select> results'
         },
-    })  
+        columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }
+            ],
+    })
+
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+        table
+            .cells(null, 0, { search: 'applied', order: 'applied' })
+            .every(function (cell) {
+                this.data(i++);
+            });
+    })
+    .draw();  
 } );
 </script>

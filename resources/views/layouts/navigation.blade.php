@@ -37,11 +37,7 @@
                     <x-nav-link :href="route('check')" class="position-relative" :active="request()->routeIs('check','req_detail')">
                         {{ __('Approve Request') }}
                         @if($count != 0)
-                            <span class="position-absolute start-100 translate-middle-y badge rounded-pill bg-danger">
-                                {{$count}}
-                            </span>
-                        @else
-                            <span class="position-absolute start-100 translate-middle-y badge rounded-pill bg-light text-dark">
+                            <span class="position-absolute bottom-0 start-50 translate-middle-x badge rounded-pill bg-danger">
                                 {{$count}}
                             </span>
                         @endif
@@ -58,11 +54,7 @@
                     <x-nav-link :href=" route('revise_req')" class="position-relative" :active="request()->routeIs('revise_req','redo_detail')">
                         {{ __('Revise Request') }}
                         @if($count != 0)
-                            <span class="position-absolute start-100 translate-middle-y badge rounded-pill bg-danger">
-                                {{$count}}
-                            </span>
-                        @else
-                            <span class="position-absolute start-100 translate-middle-y badge rounded-pill bg-light text-dark">
+                            <span class="position-absolute bottom-0 start-50 translate-middle-x badge rounded-pill bg-danger">
                                 {{$count}}
                             </span>
                         @endif

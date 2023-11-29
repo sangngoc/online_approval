@@ -14,6 +14,7 @@
     <table class="table table-hover table-striped" id="approve_table">
     <thead>
         <tr>
+            <th></th>
             <th>Request ID</th>
             <th>Receiving Unit</th>
             <th>Request Type</th>
@@ -36,6 +37,7 @@
     <form action="{{ route('req_detail') }}" method="POST" enctype="multipart/form-data">
         @csrf   
         
+        <td></td>
         <td><x-input-label :value="__($reqst->req_id)" /></td>
             <input type="hidden" name="req_id" value="{{$reqst->req_id}}">
         <td><x-input-label :value="__($reqst->sys_name)" /></td>
@@ -71,7 +73,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#approve_table').DataTable({
+        var table = $('#approve_table').DataTable({
             //disable sorting on last column
             "columnDefs": [
                 { "orderable": false, "targets": 5 }
@@ -93,7 +95,24 @@
                 '<option value="-1">All</option>'+
                 '</select> results'
             },
-        })  
+            columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }
+            ],
+        })
+        
+        table.on('order.dt search.dt', function () {
+            let i = 1;
+            table
+                .cells(null, 0, { search: 'applied', order: 'applied' })
+                .every(function (cell) {
+                    this.data(i++);
+                });
+        })
+        .draw();
     } );
 
 </script>

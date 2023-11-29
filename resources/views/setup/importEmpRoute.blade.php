@@ -18,7 +18,7 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-        <form action="{{ route('importCSV') }}" method="POST" class="mt-6" enctype="multipart/form-data">
+        <form action="{{ route('importCSV') }}" method="POST" class="mt-6" enctype="multipart/form-data" id="sendForm">
             @csrf
             <div>
                 <input type="hidden" name="user_id" value="{{ (new App\Http\Controllers\Controller)->parse_id(Auth::user()->id) }}">
@@ -35,15 +35,23 @@
             <table class="table table-hover table-striped" id="emp_route_table">
             <thead class="align-middle">
                 <tr>
+                    <th></th>
                     <th>Route ID</th>
                     <th>Route Name</th>
                     <th>Emp ID</th>
                     <th>Emp Name</th>
                 </tr>
             </thead>
+            @php
+                $no=0;
+            @endphp
             <tbody>
         @foreach ($emp_route as $item)
+            @php
+                $no= $no+1;
+            @endphp
                 <tr>
+                    <td></td>
                     <td><x-input-label :value="__($item->route_id)" /></td>
                     <td><x-input-label :value="__($item->route_name)" /></td>
                     <td><x-input-label :value="__($item->id)" /></td>
@@ -82,7 +90,11 @@
 
 <script>
     $(document).ready(function() {
-    $('#emp_route_table').DataTable({
+    var table = $('#emp_route_table').DataTable({
+        //disable sorting on last column
+        "columnDefs": [
+            { "orderable": false, "targets": 5 }
+        ],
         language: {
             //customize pagination prev and next buttons: use arrows instead of words
             'paginate': {
@@ -90,15 +102,31 @@
             'next': '<span class="fa fa-chevron-right"></span>'
             },
             //customize number of elements to be displayed
-            "lengthMenu": 'Display <select class="form-control input-sm" style="width: 6ch; display: inline-block;">'+
+            "lengthMenu": 'Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
+                '<option value="5">5</option>'+
                 '<option value="10">10</option>'+
-                '<option value="20">20</option>'+
-                '<option value="30">30</option>'+
-                '<option value="40">40</option>'+
+                '<option value="25">25</option>'+
                 '<option value="50">50</option>'+
                 '<option value="-1">All</option>'+
-                '</select>'
+                '</select> results'
         },
-    })  
+        columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }
+            ],
+    })
+    
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+        table
+            .cells(null, 0, { search: 'applied', order: 'applied' })
+            .every(function (cell) {
+                this.data(i++);
+            });
+    })
+    .draw();
 } );
 </script>

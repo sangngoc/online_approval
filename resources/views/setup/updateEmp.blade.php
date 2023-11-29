@@ -217,7 +217,7 @@
                             </select>
                         
                             <x-input-label :value="__('Name')" />
-                                <x-text-input class="block mt-1 w-full" type="text" name="u_name" placeholder="{{$emp->name}}" readonly/>
+                                <x-text-input class="block mt-1 w-full" type="text" name="u_name" value="{{$emp->name}}"/>
                        
                             <x-input-label :value="__('Email')" />
                                 <x-text-input class="block mt-1 w-full" type="text" name="u_name" placeholder="{{$emp->email}}" readonly/>
@@ -258,7 +258,7 @@
 
 <script>
     $(document).ready(function() {
-    $('#user_table').DataTable({
+    var table = $('#user_table').DataTable({
         //disable sorting on last column
         "columnDefs": [
             { "orderable": false, "targets": 5 }
@@ -278,6 +278,23 @@
                 '<option value="-1">All</option>'+
                 '</select> results'
         },
-    })  
+        columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }
+            ],
+    })
+    
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+        table
+            .cells(null, 0, { search: 'applied', order: 'applied' })
+            .every(function (cell) {
+                this.data(i++);
+            });
+    })
+    .draw();
 } );
 </script>
