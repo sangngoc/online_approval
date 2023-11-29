@@ -1,5 +1,11 @@
 @php
-    $user = DB::table('users')->get();
+    if (str_contains(Auth::user()->u_right , '3')){
+        $user = DB::table('users')->get();
+    }else{
+        $user = DB::table('users')
+        ->where('users.dep_id',Auth::user()->dep_id)
+        ->get();
+    }
 @endphp
 
 <x-app-layout>

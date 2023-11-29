@@ -29,9 +29,7 @@ class FileController extends Controller
             ]);
     
             $fileName = time().'.csv';
-        
             $request->importCSV->move(public_path('uploads'), $fileName);
-
             $this->importCsv($fileName, $request->user_id);
 
             return back()->with('success','Imported successfully');
@@ -86,7 +84,11 @@ class FileController extends Controller
             ->where('route_id',$routeArr[$i]['route_id'])
             ->join('request__types','request__types.type_id','=','request__routes.type_id')
             ->first();
-            if(!is_null($check)){
+            if(is_null($check)){
+                File::delete(public_path('uploads/'.$fName));
+                return back()->with('error','Route error');
+            }
+            else{
                 $mas=DB::table('master')
                 ->where('emp_id',$user_id)
                 ->where('sys_id',$check->sys_id)
@@ -96,6 +98,10 @@ class FileController extends Controller
                         'route_id' => $routeArr[$i]['route_id'],
                         'emp_id' => $routeArr[$i]['emp_id'],
                     ];
+                }
+                else{
+                    File::delete(public_path('uploads/'.$fName));
+                    return back()->with('error','Route error');
                 }
             }
         }

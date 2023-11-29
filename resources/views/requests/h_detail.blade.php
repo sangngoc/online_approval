@@ -66,7 +66,7 @@
             <table class="table table-hover" id="history_approve">
             <thead class="align-middle">
                 <tr>
-                    <th style="width: 8%" >Seq No.</th>
+                    <th style="width: 3%" >Seq No.</th>
                     <th style="width: 8%" >Emp ID</th>
                     <th style="width: 20%" >Emp Name</th>
                     <th style="width: 20%" >File</th>

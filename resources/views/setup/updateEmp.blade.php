@@ -1,6 +1,11 @@
 @php
-    $user = DB::table('users')->get();
-    
+    if (str_contains(Auth::user()->u_right , '3')){
+        $user = DB::table('users')->get();
+    }else{
+        $user = DB::table('users')
+        ->where('users.dep_id',Auth::user()->dep_id)
+        ->get();
+    }
 @endphp
 <x-app-layout>
     @include('setup.setup_menu')
@@ -220,7 +225,7 @@
                                 <x-text-input class="block mt-1 w-full" type="text" name="u_name" value="{{$emp->name}}"/>
                        
                             <x-input-label :value="__('Email')" />
-                                <x-text-input class="block mt-1 w-full" type="text" name="u_name" placeholder="{{$emp->email}}" readonly/>
+                                <x-text-input class="block mt-1 w-full" type="text" name="u_email" placeholder="{{$emp->email}}" readonly/>
 
                             @include('setup.addAdmin')
                             <x-primary-button type="button" class="flex items-center justify-end mt-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

@@ -42,21 +42,28 @@
                     <th>Emp Name</th>
                 </tr>
             </thead>
-            @php
-                $no=0;
-            @endphp
             <tbody>
         @foreach ($emp_route as $item)
             @php
-                $no= $no+1;
+                $check=DB::table('request__routes')
+                ->where('route_id', $item->route_id)
+                ->join('request__types','request__types.type_id','=','request__routes.type_id')
+                ->first();
+                
+                $mas=DB::table('master')
+                ->where('emp_id', (new App\Http\Controllers\Controller)->parse_id(Auth::user()->id) )
+                ->where('sys_id',$check->sys_id)
+                ->first();
             @endphp
+            @if($mas)
                 <tr>
                     <td></td>
                     <td><x-input-label :value="__($item->route_id)" /></td>
                     <td><x-input-label :value="__($item->route_name)" /></td>
                     <td><x-input-label :value="__($item->id)" /></td>
                     <td><x-input-label :value="__($item->name)" /></td>
-                </tr>    
+                </tr>
+            @endif 
         @endforeach
             </tbody>
             </table>
