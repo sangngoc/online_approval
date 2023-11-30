@@ -37,7 +37,7 @@
             $route=DB::table('request__routes')->where('type_id',$id)->get();
             $e=DB::table('users')->get();
         @endphp
-        <x-form> {{-- chinh sua ten type --}}
+        <x-form> {{-- chinh sua type --}}
             <form action="{{ route('edit_type')}}" method="POST">
                 @csrf
                 <x-input-label :value="__('Receiving Unit ID: '.$type->sys_id)" />
@@ -46,6 +46,18 @@
                 <x-input-label :value="__('Type ID: '.$id)" />
                 <x-input-label :value="__('Type Name: ')" />
                 <x-text-input class="block mt-1 w-full" type="text" value="{{$type->type_name}}" name="type_name" />
+
+                <x-input-label :value="__('Share')" />
+                    <input 
+                        type="checkbox" 
+                        id="share" 
+                        name="share" 
+                        value="1" 
+                        @if( $type->share == 1 )
+                            checked="checked"
+                        @endif
+                    >
+                <label for="share"> Share</label><br>
                 
                 <x-primary-button class="flex items-center justify-end mt-4" type="submit" name="save">Update</x-primary-button>
             </form>

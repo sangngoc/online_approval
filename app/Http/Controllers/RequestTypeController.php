@@ -38,6 +38,21 @@ class RequestTypeController extends Controller
             DB::table('request__types')
             ->where('type_id',$request->type_id)
             ->update(['type_name' => $request->type_name]);
+
+            if($request->share){
+                DB::table('request__types')
+                ->where('type_id',$request->type_id)
+                ->update([
+                    'share'=> 1,
+                ]);
+            }
+            else{
+                DB::table('request__types')
+                ->where('type_id',$request->type_id)
+                ->update([
+                    'share'=> 0,
+                ]);
+            }
         }
 
         DB::table('request__types')

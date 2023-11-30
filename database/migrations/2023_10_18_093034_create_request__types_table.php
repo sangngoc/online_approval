@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('type_id', 10);
             $table->string('type_name');
             $table->string('sys_id', 10);
+            $table->boolean('share')->default(0);
             
             $table->timestamps();
 
