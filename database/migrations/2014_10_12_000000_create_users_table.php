@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password')->default(Hash::make(12345678));
             $table->rememberToken();
             $table->string('u_right')->default('0');
+            $table->boolean('active')->default(1);
             $table->timestamps();
    
         });

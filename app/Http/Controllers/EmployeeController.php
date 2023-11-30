@@ -96,6 +96,21 @@ class EmployeeController extends Controller
         $user = DB::table('users')
             ->where('id',$request->user_id)
             ->first();
+
+        if($request->u_active){
+            DB::table('users')
+            ->where('id',$user->id)
+            ->update([
+                'active'=> 1,
+            ]);
+        }
+        else{
+            DB::table('users')
+            ->where('id',$user->id)
+            ->update([
+                'active'=> 0,
+            ]);
+        }
         $this->store_admin($request,$user);
     
         return back()->with('success','You have successfully update user.');

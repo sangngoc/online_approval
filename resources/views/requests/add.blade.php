@@ -3,6 +3,11 @@
         <strong>{{ $message }}</strong>
     </div>
 @endif
+@if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
 
 @if ($errors->any())
     <div class="mt-1 alert alert-danger">

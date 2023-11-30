@@ -5,7 +5,15 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email Address -->
+        <!-- User id -->
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger alert-block">
+                <strong>{{ $message }}</strong>
+            </div>
+            @php
+                session()->forget('error');
+            @endphp
+        @endif
         <div>
             <x-input-label for="email" :value="__('USER ID')" />
             <x-text-input id="email" class="block mt-1 w-full" type="text" name="id" :value="old('id')" required autofocus autocomplete="username" />

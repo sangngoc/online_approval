@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class LoginRequest extends FormRequest
 {
@@ -107,6 +108,7 @@ class LoginRequest extends FormRequest
                 'id' => trans('auth.failed'),
             ]);
         }
+        $this->checkActive();
 
         RateLimiter::clear($this->throttleKey());
     }
@@ -140,5 +142,12 @@ class LoginRequest extends FormRequest
     public function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->input('id')).'|'.$this->ip());
+    }
+
+    public function checkActive(){
+        if( Auth::user()->active != 1){
+            Auth::logout();
+            session(['error' => 'Your account is inactive']);
+        }
     }
 }

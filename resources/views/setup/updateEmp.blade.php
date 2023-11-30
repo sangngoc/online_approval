@@ -227,6 +227,22 @@
                             <x-input-label :value="__('Email')" />
                                 <x-text-input class="block mt-1 w-full" type="text" name="u_email" placeholder="{{$emp->email}}" readonly/>
 
+                            <x-input-label :value="__('Active')" />
+                            @if( isset($user_id) )
+                                <input 
+                                    type="checkbox" 
+                                    id="u_active" 
+                                    name="u_active" 
+                                    value="1" 
+                                    @if( $emp->active == 1 )
+                                        checked="checked"
+                                    @endif
+                                >
+                            @else
+                                <input type="checkbox" id="u_active" name="u_active" value="1">
+                            @endif
+                            <label for="u_active"> Active</label><br>
+                            
                             @include('setup.addAdmin')
                             <x-primary-button type="button" class="flex items-center justify-end mt-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Update

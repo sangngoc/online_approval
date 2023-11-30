@@ -61,7 +61,7 @@ class RequestsController extends Controller
             ;
             if(empty($req->route_id)){
                 return back()
-            ->with('success','You don\'t have right to send this request.');
+            ->with('error','You don\'t have right to send this request.');
             }
             $sec=DB::table('users')
                 ->where('id', $request->from_id)->first()->sec_id;
