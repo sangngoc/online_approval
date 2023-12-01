@@ -76,7 +76,7 @@
             'next': '<span class="fa fa-chevron-right"></span>'
             },
             //customize number of elements to be displayed
-            "lengthMenu": 'Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
+            "lengthMenu": '<label style="margin-left: 1rem">Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
                 '<option value="10">10</option>'+
                 '<option value="20">20</option>'+
                 '<option value="30">30</option>'+
@@ -86,12 +86,13 @@
                 '</select> results'
         },
         columnDefs: [
-                {
-                    searchable: false,
-                    orderable: false,
-                    targets: 0
-                }
-            ],
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0
+            }
+        ],
+        dom: 'ilfrtp',
     })
 
     table.on('order.dt search.dt', function () {

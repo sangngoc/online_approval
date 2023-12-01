@@ -32,7 +32,10 @@ class FileController extends Controller
             $request->importCSV->move(public_path('uploads'), $fileName);
             $this->importCsv($fileName, $request->user_id);
 
-            return back()->with('success','Imported successfully');
+            if(session('error')){
+                return back();
+            }
+            else return back()->with('success','Imported successfully');
         }
         
         return back()->with('error','No file chosen');
@@ -86,7 +89,8 @@ class FileController extends Controller
             ->first();
             if(is_null($check)){
                 File::delete(public_path('uploads/'.$fName));
-                return back()->with('error','Route error');
+                return back()->with('error','Route error - There is a route does not exist');
+                break;
             }
             else{
                 $mas=DB::table('master')
@@ -101,7 +105,8 @@ class FileController extends Controller
                 }
                 else{
                     File::delete(public_path('uploads/'.$fName));
-                    return back()->with('error','Route error');
+                    return back()->with('error','Route error - There is a route is not under your management');
+                    break;
                 }
             }
         }

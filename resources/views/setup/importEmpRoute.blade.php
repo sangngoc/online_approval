@@ -55,7 +55,15 @@
                 ->where('sys_id',$check->sys_id)
                 ->first();
             @endphp
-            @if($mas)
+            @if( str_contains(Auth::user()->u_right , '3') )
+                <tr>
+                    <td></td>
+                    <td><x-input-label :value="__($item->route_id)" /></td>
+                    <td><x-input-label :value="__($item->route_name)" /></td>
+                    <td><x-input-label :value="__($item->id)" /></td>
+                    <td><x-input-label :value="__($item->name)" /></td>
+                </tr>
+            @elseif($mas)
                 <tr>
                     <td></td>
                     <td><x-input-label :value="__($item->route_id)" /></td>
@@ -109,7 +117,7 @@
             'next': '<span class="fa fa-chevron-right"></span>'
             },
             //customize number of elements to be displayed
-            "lengthMenu": 'Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
+            "lengthMenu": '<label style="margin-left: 1rem">Display <select class="form-control input-sm" style="width: 10ch; display: inline-block;">'+
                 '<option value="5">5</option>'+
                 '<option value="10">10</option>'+
                 '<option value="25">25</option>'+
@@ -118,12 +126,13 @@
                 '</select> results'
         },
         columnDefs: [
-                {
-                    searchable: false,
-                    orderable: false,
-                    targets: 0
-                }
-            ],
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0
+            }
+        ],
+        dom: 'ilrtp',
     })
     
     table.on('order.dt search.dt', function () {

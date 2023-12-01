@@ -86,7 +86,7 @@
                 },
 
                 //customize number of elements to be displayed
-                "lengthMenu": 'Display <select class="form-control input-sm">'+
+                "lengthMenu": '<label style="margin-left: 1rem">Display <select class="form-control input-sm">'+
                 '<option value="10">10</option>'+
                 '<option value="20">20</option>'+
                 '<option value="30">30</option>'+
@@ -102,6 +102,7 @@
                     targets: 0
                 }
             ],
+            dom: 'ilfrtp',
         })
         
         table.on('order.dt search.dt', function () {
