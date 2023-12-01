@@ -184,7 +184,7 @@
         <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
 
-        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" name="yes">
+        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" id="yes" name="yes">
             Approve
         </x-primary-button>
 
@@ -206,7 +206,7 @@
         <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
 
-        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" name="redo">
+        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" id="redo" name="redo">
             Revise
         </x-primary-button>
 
@@ -228,7 +228,7 @@
         <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
 
-        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" name="no">
+        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" id="no" name="no" data-autofocus>
             Reject
         </x-primary-button>
 
@@ -236,3 +236,9 @@
     </div>
     </div>
 </div>
+
+<script>
+    focusButton('redoModal','redo');
+    focusButton('rejectModal','no');
+    focusButton('approveModal', 'yes');
+</script>

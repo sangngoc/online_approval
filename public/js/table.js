@@ -55,6 +55,15 @@ window.onload = function myFunction() {
     }
 }
 
+function focusButton(modal_id, button_id){
+    var myModal = document.getElementById(modal_id)
+    var myInput = document.getElementById(button_id)
+
+    myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+    })
+};
+
 //setup data table
 $(document).ready(function() {
     $('#history_approve').DataTable({

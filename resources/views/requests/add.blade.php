@@ -69,14 +69,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Send Request?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       {{-- <div class="modal-body">
         ...
       </div> --}}
       <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
-        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm">
+        <x-primary-button class="flex items-center justify-end" type="submit" form="sendForm" id="send">
             Send
         </x-primary-button>
       </div>
@@ -86,7 +86,11 @@
 @endif
 
 <script>
+    focusButton('exampleModal','send');
+
     bkLib.onDomLoaded(function() {
         new nicEditor().panelInstance('area1');
     });
+
+    
 </script>

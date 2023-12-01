@@ -167,7 +167,7 @@
         <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
 
-        <x-primary-button class="flex items-center justify-end" type="submit" value="{{$r->req_id}}" name="yes" form="sendForm">
+        <x-primary-button class="flex items-center justify-end" type="submit" value="{{$r->req_id}}" id="yes" name="yes" form="sendForm">
             Send
         </x-primary-button>
 
@@ -180,4 +180,6 @@
     bkLib.onDomLoaded(function() {
         new nicEditor().panelInstance('area1');
     });
+
+    focusButton('exampleModal','yes');
 </script>

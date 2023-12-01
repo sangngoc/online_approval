@@ -47,7 +47,7 @@
         <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 
         <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
-        
+        <script src="{{ URL::asset('js/table.js') }}" ></script>
 
     </head>
     <body class="font-sans antialiased">
