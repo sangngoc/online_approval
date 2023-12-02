@@ -94,7 +94,7 @@
         <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
 
-        <x-primary-button class="flex items-center justify-end" type="submit" name="import" form="sendForm">
+        <x-primary-button class="flex items-center justify-end" type="submit" id="import" name="import" form="sendForm">
             Import
         </x-primary-button>
 
@@ -104,6 +104,8 @@
 </div>
 
 <script>
+    focusTable('exampleModal','import');
+
     $(document).ready(function() {
     var table = $('#emp_route_table').DataTable({
         //disable sorting on last column

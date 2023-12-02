@@ -260,7 +260,7 @@
         <div class="modal-footer">
         <x-secondary-button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</x-secondary-button>
 
-        <x-primary-button class="flex items-center justify-end" type="submit" name="add" form="sendForm">
+        <x-primary-button class="flex items-center justify-end" type="submit" id="add" name="add" form="sendForm">
             add
         </x-primary-button>
 
@@ -270,6 +270,8 @@
 </div>
 
 <script>
+    focusButton('exampleModal','add');
+
     $(document).ready(function() {
         var table = $('#user_table').DataTable({
         //disable sorting on last column
