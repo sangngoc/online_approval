@@ -47,7 +47,16 @@
         <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 
         <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
-        <script src="{{ URL::asset('js/table.js') }}" ></script>
+        <script>
+            function focusButton(modal_id, button_id){
+                var myModal = document.getElementById(modal_id)
+                var myInput = document.getElementById(button_id)
+            
+                myModal.addEventListener('shown.bs.modal', function () {
+                myInput.focus()
+                })
+            };
+        </script>
 
     </head>
     <body class="font-sans antialiased">
