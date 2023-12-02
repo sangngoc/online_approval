@@ -55,14 +55,12 @@ window.onload = function myFunction() {
     }
 }
 
-function focusButton(modal_id, button_id){
-    var myModal = document.getElementById(modal_id)
-    var myInput = document.getElementById(button_id)
-
-    myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-    })
-};
+//prevent submit request when press enter while form not complete
+$(document).on("keydown", ":input:not(textarea):not(:submit)", function(event) {
+    if (event.key == "Enter") {
+        event.preventDefault();
+    }
+});
 
 //setup data table
 $(document).ready(function() {
