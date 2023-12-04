@@ -3,9 +3,58 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
         </h2>
+        @php
+            $info = DB::table('users')
+            ->where('users.id', (new App\Http\Controllers\Controller)->parse_id( Auth::user()->id) )
+            ->join('units','units.unit_id','=','users.unit_id')
+            ->join('departments','departments.dep_id','=','users.dep_id')
+            ->join('sections','sections.sec_id','=','users.sec_id')
+            ->select('id','name','users.unit_id','users.dep_id','users.sec_id','unit_name','dep_name','sec_name')
+            ->first();
+        @endphp
+
+        <div class="d-flex flex-row">
+            <div class="font-semibold text-md text-black mr-1">User ID:</div>
+            <div class="font-semi text-md text-black">{{$info->id}}</div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="font-semibold text-md text-black mr-1">Name:</div>
+            <div class="font-semi text-md text-black">{{$info->name}}</div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="d-flex">
+                <div class="font-semibold text-md text-black mr-1">Unit ID:</div>
+                <div class="font-semi text-md text-black">{{$info->unit_id}}</div>
+            </div>
+            <div class="d-flex ms-auto">
+                <div class="font-semibold text-md text-black mr-1">Unit Name:</div>
+                <div class="font-semi text-md text-black">{{$info->unit_name}}</div>
+            </div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="d-flex">
+                <div class="font-semibold text-md text-black mr-1">Dep ID:</div>
+                <div class="font-semi text-md text-black">{{$info->dep_id}}</div>
+            </div>
+            <div class="d-flex ms-auto">
+                <div class="font-semibold text-md text-black mr-1">Dep Name:</div>
+                <div class="font-semi text-md text-black">{{$info->dep_name}}</div>
+            </div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="d-flex">
+                <div class="font-semibold text-md text-black mr-1">Sec ID:</div>
+                <div class="font-semi text-md text-black">{{$info->sec_id}}</div>
+            </div>
+            <div class="d-flex ms-auto">
+                <div class="font-semibold text-md text-black mr-1">Sec Name:</div>
+                <div class="font-semi text-md text-black">{{$info->sec_name}}</div>
+            </div>
+        </div>
+        
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Update your account's email address.") }}
         </p>
     </header>
 

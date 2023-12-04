@@ -1,4 +1,4 @@
-// edit file da chon truoc khi update
+// edit file before update
 const dt = new DataTransfer(); 
 
 $("#attachment").on('change', function(e){
@@ -30,7 +30,7 @@ $("#attachment").on('change', function(e){
     });
 });
 
-
+//show receiving unit selection on click event
 function get_unit() {
     var checkBox = document.getElementById("right2");
     var text = document.getElementById("unit_master");
@@ -43,6 +43,7 @@ function get_unit() {
     }
 }
 
+//show receiving unit selection on load event
 window.onload = function myFunction() {
     var checkBox = document.getElementById("right2");
     var text = document.getElementById("unit_master");
@@ -84,7 +85,3 @@ $(document).ready(function() {
         dom: 'ilfrtp',
     })  
 } );
-
-
-
-
