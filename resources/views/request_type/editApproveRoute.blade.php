@@ -1,12 +1,13 @@
 <x-form-big>
-    <p>Route ID: 
+    <div class="d-flex">
+        <div class="font-semibold text-md text-black mr-1">Route ID:</div>
         @if (!is_null(Session::get('route_id')))
             @php
                 $r=DB::table('request__routes')->where('route_id', Session::get('route_id') )->first();
             @endphp
                 {{ Session::get('route_id') }}
         @endif
-    </p>
+    </div>
             @php
                 $lvs=[1,2,3,4,5,6,7,8,9,10];
             @endphp

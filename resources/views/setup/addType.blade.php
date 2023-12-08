@@ -40,23 +40,33 @@
         <x-form> {{-- chinh sua type --}}
             <form action="{{ route('edit_type')}}" method="POST">
                 @csrf
-                <x-input-label :value="__('Receiving Unit ID: '.$type->sys_id)" />
+                <div class="d-flex">
+                    <div class="font-semibold text-md text-black mr-1">Receiving Unit ID:</div>
+                    <div class="font-semi text-md text-black">{{$type->sys_id}}</div>
+                </div>
+                
                 <input type="hidden" name="type_id" value="{{$id}}">
                 <input type="hidden" name="sys_id" value="{{ $type->sys_id }}">
-                <x-input-label :value="__('Type ID: '.$id)" />
-                <x-input-label :value="__('Type Name: ')" />
+
+                <div class="d-flex">
+                    <div class="font-semibold text-md text-black mr-1">Type ID:</div>
+                    <div class="font-semi text-md text-black">{{$id}}</div>
+                </div>
+                <div class="d-flex">
+                    <div class="font-semibold text-md text-black mr-1">Type Name:</div>
+                </div>
                 <x-text-input class="block mt-1 w-full" type="text" value="{{$type->type_name}}" name="type_name" />
 
-                <x-input-label :value="__('Share')" />
-                    <input 
-                        type="checkbox" 
-                        id="share" 
-                        name="share" 
-                        value="1" 
-                        @if( $type->share == 1 )
-                            checked="checked"
-                        @endif
-                    >
+                
+                <input 
+                    type="checkbox" 
+                    id="share" 
+                    name="share" 
+                    value="1" 
+                    @if( $type->share == 1 )
+                        checked="checked"
+                    @endif
+                >
                 <label for="share"> Share</label><br>
                 
                 <x-primary-button class="flex items-center justify-end mt-4" type="submit" name="save">Update</x-primary-button>

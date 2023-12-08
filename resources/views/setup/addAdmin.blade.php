@@ -1,5 +1,5 @@
 @if ( str_contains(Auth::user()->u_right , '3'))
-    <x-input-label :value="__('Right')" />
+<div class="font-semibold text-md text-black mr-1">Right</div>
     @if( isset($user_id) )
         <input 
             type="checkbox" 

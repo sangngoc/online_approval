@@ -3,8 +3,11 @@
     $s=DB::table('master')->where('sys_id', Session::get('sys_id') )->get();
 @endphp
 <x-form>
-    <x-input-label :value="__('Receiving Unit ID: '.$sys->sys_id )" />
-    <x-input-label :value="__('Receiving Unit Name: ')" />
+    <div class="d-flex">
+        <div class="font-semibold text-md text-black mr-1">Receiving Unit ID:</div>
+        <div class="font-semi text-md text-black">{{$sys->sys_id}}</div>
+    </div>
+    <div class="font-semibold text-md text-black mr-1">Receiving Unit Name:</div>
         <form action="{{ route('sys_store') }}" method="post" class="row">
             @csrf
             <div class="flex items-center justify-end mt-1 col-6">
@@ -16,7 +19,7 @@
             </div>
         </form>
         
-    <x-input-label :value="__('Emp ID:')" />
+        <div class="font-semibold text-md text-black mr-1">Emp ID:</div>
 
     @foreach ($s as $item)
     <form action="{{ route('sys_store_emp') }}" method="post" class="row">
@@ -36,8 +39,10 @@
     <form action="{{ route('sys_add_emp') }}" method="post">
         @csrf
         <input type="hidden" name="sys_id" value="{{ $sys->sys_id }}" >
-        <x-input-label-line :value="__('Emp ID:')" />
-        <x-text-input type="number" name="emp_id" list="dataEmpOptions" />
-        <x-primary-button class="flex items-center justify-end mt-1 " type="submit" name="add_emp" >ADD</x-primary-button>
+        <div class="d-flex">
+            <div class="font-semibold text-md text-black mr-1 mt-2">Receiving Unit ID:</div>
+            <x-text-input type="number" name="emp_id" list="dataEmpOptions" />
+            <x-primary-button class="flex items-center justify-end " type="submit" name="add_emp" >ADD</x-primary-button>
+        </div>
     </form>
 </x-form>

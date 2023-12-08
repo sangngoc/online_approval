@@ -18,7 +18,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h3 class="font-semibold text-md text-gray-700 leading-tight">
-            {{ __('History') }}
+            {{ __('History Search') }}
         </h3>
     </x-slot>
 

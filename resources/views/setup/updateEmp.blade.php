@@ -49,7 +49,7 @@
 
                     <div class="font-semibold text-md text-black">User ID: {{$emp->id}}</div>
 
-                    <x-input-label :value="__('Unit ID')" />
+                    <div class="font-semibold text-md text-black mr-1">Unit</div>
                 
                     <div class="dropdown">
                         <x-button-input class="btn block w-full mt-1 text-start" type="button" id="dropdownMenuButton"
@@ -86,7 +86,7 @@
                         @endif
                     </div>
                     
-                    <x-input-label :value="__('Dep ID')" />
+                    <div class="font-semibold text-md text-black mr-1">Department</div>
                         
                     <div class="dropdown">
                         <x-button-input class="btn block w-full mt-1 text-start" type="button" id="dropdownMenuButton"
@@ -142,7 +142,7 @@
                         @endif
                     </div>
                 
-                    <x-input-label :value="__('Section')" />
+                    <div class="font-semibold text-md text-black mr-1">Section</div>
                         
                     <div class="dropdown">
                         <x-button-input class="btn block w-full mt-1 text-start" type="button" id="dropdownMenuButton"
@@ -214,20 +214,20 @@
                                 <input type="hidden" name="u_sec_id" value="{{$emp->sec_id}}">
                             @endif
                             
-                            <x-input-label :value="__('Position')" />
+                            <div class="font-semibold text-md text-black mr-1">Position</div>
                             <select name="u_pos">
                                 <option value="{{$emp->position}}" selected>{{$emp->position}}</option>
                                 <option value="staff">Staff</option>
                                 <option value="manager">Manager</option>
                             </select>
                         
-                            <x-input-label :value="__('Name')" />
+                            <div class="font-semibold text-md text-black mr-1">Name</div>
                                 <x-text-input class="block mt-1 w-full" type="text" name="u_name" value="{{$emp->name}}"/>
                        
-                            <x-input-label :value="__('Email')" />
+                            <div class="font-semibold text-md text-black mr-1">Email</div>
                                 <x-text-input class="block mt-1 w-full" type="text" name="u_email" placeholder="{{$emp->email}}" readonly/>
 
-                            <x-input-label :value="__('Active')" />
+                            
                             @if( isset($user_id) )
                                 <input 
                                     type="checkbox" 
